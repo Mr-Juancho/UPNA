@@ -1,0 +1,12 @@
+Objetivo del tema: Transformar texto no estructurado a una representacion numerica estructurada
+(Busca reducir el numero de palabras),(ruido innecesario) -> en ML el aprendizaje sea mas eficiente y mejor.
+
+Mision texto estructurado
+
+1. (tokenizacion) el escultor acorta las palabras convirtiendolas en tokens
+2. BPE(byte-pair-encoding) un duende coje los tokens del escultor y une las que mas se repiten y las mete en una linea de produccion
+3. (stopwords) en la linea de produccion un oso se come las palabras aburridas (ya sabe cuales son)
+4. (stemming/lemmatizacion) esa linea se divide una en una jardin, donde hay un jardinero rudo que corta las palabras hasta dejar solo
+la raiz (no le importa si parece una palabra real) es muy "este", luego tenemos al experto en el laboratorio lemmar que deja la semilla 
+original (la palabra primitiva)
+5. (Bag of words) Luego tenemos una bascula de oro que pesa el TF-IDF

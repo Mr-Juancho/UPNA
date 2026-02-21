@@ -1,0 +1,75 @@
+char * cadena;
+cadena = (char *)malloc(100 * sizeof(char));
+mallooc -> puntero a void, hacemos casting
+
+printf("minishell\\>")
+fflush(stdout)
+scanf("%[^\n]", cadena); //se queda el intro al final
+getchar();
+
+while(strcmp(cadena, "exit") != 0){
+    int pid = fork();
+    if (pid == 0){
+        char **arg;
+        arg = fragmenta(cadena);
+        execvp(arg[0], arg);
+        pritf("Error, comando no existe o no se encuentra\n");
+        exit();
+    }else{
+        wait(NULL);
+        printf("minishell\\>")
+        fflush(stdout)
+        scanf("%[^\n]", cadena); //se queda el intro al final
+        getchar();
+    }
+}
+
+//fragmenta
+
+char **fragmenta(const char *cadena){
+    char **arg;
+    char *copia;
+    //tenemos el problema que no sabemos cuanto ocupa cadena, entonces usamos la libreria string.h
+    copia = (char *)malloc((strlen(cadena)+1)*sizeof(char));
+    strncopy(copia,cadena);
+
+    int contador = 1;
+    char *pal;
+    pal = strtok(copia, " ");
+    
+    while(pal != NULL){
+        if(strlen(pal) > 0 ){
+            contador ++;
+        }
+        pal = strtok(NULL, " ");
+    }
+
+    arg = (char **)malloc(contador*sizeof(char*));
+    int aux= 0;
+    pal = strtok(cadena, " ");
+
+    while(pal != NULL){
+        if(strlen(pal) > 0 ){
+            arg[aux] = (char *)malloc(strlen(pal)+1);
+            strncpy(arg[aux],pal);
+            aux ++;
+        }
+        pal = strtok(NULL, " "); 
+    }
+    arg[aux] = NULL;
+
+    return arg;
+}
+
+void borrarg(char **arg){
+    int contador = 0;
+    while(arg[contador] != NULL){
+        free(arg[contador]);
+        contador++;
+    }
+    free(arg);
+
+}
+
+//compilar libreria, gcc -c fragmenta.c, luego gcc -o minishell minishell.c fragmenta.o
+//include "fragmenta.h"

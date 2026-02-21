@@ -1,0 +1,5 @@
+3 10 ls -l
+1 50 sleep 6
+2 1 echo Soy_Prioridad_Alta
+2 10 echo Soy_Prioridad_Baja
+1 50 sleep 2
